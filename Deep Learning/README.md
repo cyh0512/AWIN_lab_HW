@@ -1,1 +1,6 @@
+在這份程式中，先從Google雲端載入資料後，將輸入資料調整至合適的格式，再將訓練資料切分為訓練集(Training set)和驗證集(Validation set)兩組資料，然後利用Keras中的模組建立模型，接著採用ReduceLROnPlateau來做學習率衰減。
+為了避免Overfitting，透過Data Augmentation來增加訓練資料數量後，再對模型進行訓練和對測試集做預測。
 
+最後透過Loss、Accuracy對Epoch回數的曲線圖來評估此模型的準確度，可以發現大約在第十回Epoch時，測試集的準確率開始低於訓練集，並且在訓練結束時(Epoch=50)，測試集與訓練集的準確度差距漸漸變大，可能有overfitting現象發生，可以透過正則化(Regularization)、縮短訓練回數、加入不同的訓練資料、對原資料做Data augmentation、來修正此情形。 
+
+另外，在測試集的Loss曲線還可以發現有較大的起伏震盪情形，可能是因為batch size區塊設置的太小，batch size選擇的越小，會導致不同batch中的資料特徵分布越不平均，影響到模型的預測準確率。所以加大batch區塊大小可以消除或減緩Loss曲線的起伏震盪情形。
